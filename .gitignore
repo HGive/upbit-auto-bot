@@ -1,1 +1,8 @@
+# 가상환경
 venv/
+
+# 닷
+.env
+
+#라이브러리들
+requirements.txt
