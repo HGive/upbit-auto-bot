@@ -24,4 +24,4 @@ asyncio.get_event_loop().run_until_complete(main())
 # 원하는 코인의 실시간 가격 정보를 받음
 pyupbit.UpbitWebsocket().run(["ticker:KRW-BTC"], handler)
 
-rsi = get_rsi(ticker)
+# rsi = get_rsi(ticker)

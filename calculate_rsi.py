@@ -15,5 +15,5 @@ def get_rsi(ticker, interval="minute3"):
 
     return rsi
 
-rsi_values = get_rsi(ticker)
-print(rsi_values)
+# rsi_values = get_rsi(ticker)
+# print(rsi_values)
