@@ -6,3 +6,6 @@ venv/
 
 #라이브러리들
 requirements.txt
+
+#캐시들
+__pycache__

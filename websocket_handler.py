@@ -1,23 +1,25 @@
 import websockets
 import json
+import asyncio
 
-async def subscribe(uri, handler):
+async def subscribe(ticker,uri, queue):
     async with websockets.connect(uri) as websocket:
         subscribe_fmt = [
             {"ticket": "test"},
             {
                 "type": "ticker",
-                "codes": ["KRW-BTC"],
-                "isOnlySnapshot": False,
+                "codes": [ticker]
             },
         ]
         await websocket.send(json.dumps(subscribe_fmt))
         while True:
             response = await websocket.recv()
-            handler(response)
+            await queue.put(response)
 
-def handler(response):
-    print(response)
 
-async def main():
-    await subscribe("wss://api.upbit.com/websocket/v1", handler)
+async def main(ticker,main_queue):
+    data_queue = asyncio.Queue()
+    subscribe_task = asyncio.create_task(subscribe(ticker,"wss://api.upbit.com/websocket/v1",data_queue))
+    while True:
+        data = await data_queue.get()
+        await main_queue.put(data)
