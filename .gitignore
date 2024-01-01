@@ -8,4 +8,4 @@ venv/
 requirements.txt
 
 #캐시들
-__pycache__
+__pycache__/
